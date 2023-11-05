@@ -24,7 +24,7 @@ transform = transforms.Compose([
     transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))
 ])
 
-@app.route('/attention', methods=['POST'])
+@app.route('/api/v1/eta/attention', methods=['POST'])
 def predict():
     # POST 요청에서 이미지 파일 받기
     if 'image' not in request.files:
