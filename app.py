@@ -4,7 +4,6 @@ from torchvision.transforms import transforms
 from PIL import Image
 
 import torch
-from torch import tensor
 
 from vgg_model import VGG
 
@@ -47,4 +46,4 @@ def predict():
     return jsonify({'prediction': prediction})
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
