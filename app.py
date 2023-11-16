@@ -4,22 +4,36 @@ from torchvision.transforms import transforms
 from PIL import Image
 
 import torch
-
-from vgg_model import VGG
+from torch import nn
+from pytorch_pretrained_vit import ViT
 
 app = Flask(__name__)
 
 # 모델 로드
 device = torch.device('cpu')
+vit =  ViT('B_16_imagenet1k', pretrained=True)
+class VisionTransformer(nn.Module):
+    def __init__(self):
+        super(VisionTransformer, self).__init__()
+        self.vit = vit
+        self.linear = nn.Linear(1000, 1)
 
-model = VGG()
-model.load_state_dict(torch.load("model_state_dict_300_VGG.pt", map_location=device))
+        
+      
+    def forward(self, x):
+        x = self.vit(x)
+        x = torch.sigmoid(self.linear(x))
+        return x
+
+model =  VisionTransformer()
+model = model.to("cpu")   
+model.load_state_dict(torch.load("vit_2023-11-14 17_24_36_model.pt", map_location=device))
 model.eval()
 
 # 이미지 전처리
 transform = transforms.Compose([
     # transforms.ToPILImage(),
-    transforms.Resize(size=(224, 224)),
+    transforms.Resize(size=(384, 384)),
     transforms.ToTensor(),
     transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))
 ])
@@ -40,7 +54,12 @@ def predict():
     # 추론
     with torch.no_grad():
         output = model(image.unsqueeze(0))
-    prediction = output.argmax(dim=1).item()
+        
+    if(float(output[0][0]) > 0.5):
+        prediction = 1
+    
+    else:
+        prediction = 0
     
     # 결과
     return jsonify({'prediction': prediction})
