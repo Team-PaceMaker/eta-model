@@ -61,7 +61,7 @@ def predict():
 
     print(float(output[0][0]))
         
-    if(float(output[0][0]) > 0.5):
+    if(float(output[0][0]) > 0.25):
         prediction = 1
     
     else:
