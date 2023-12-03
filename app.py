@@ -27,13 +27,13 @@ class VisionTransformer(nn.Module):
 
 model =  VisionTransformer()
 model = model.to("cpu")   
-model.load_state_dict(torch.load("vit_2023-11-14 17_24_36_model.pt", map_location=device))
+model.load_state_dict(torch.load("vit_weight.pt", map_location=device))
 model.eval()
 
 # 이미지 전처리
 transform = transforms.Compose([
     # transforms.ToPILImage(),
-    transforms.Resize(size=(384, 384)),
+    transforms.Resize(size=(224, 224)),
     transforms.ToTensor(),
     transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))
 ])
@@ -60,6 +60,8 @@ def predict():
     
     else:
         prediction = 0
+    prediction = output.argmax(dim=1).item()
+
     
     # 결과
     return jsonify({'prediction': prediction})
