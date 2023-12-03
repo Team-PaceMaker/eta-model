@@ -33,7 +33,7 @@ model.eval()
 # 이미지 전처리
 transform = transforms.Compose([
     # transforms.ToPILImage(),
-    transforms.Resize(size=(224, 224)),
+    transforms.Resize(size=(384,384)),
     transforms.ToTensor(),
     transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))
 ])
