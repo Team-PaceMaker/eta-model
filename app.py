@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from torchvision.transforms import transforms
+import torchvision
 
 from PIL import Image
 
@@ -45,7 +46,10 @@ def predict():
         return jsonify({'error': 'No image found'}), 400
     image_file = request.files['image']
     try:
+        #image 읽는 방식 변경
         image = Image.open(image_file)
+        # image = torchvision.io.read_image(image_file)
+
     except:
         return jsonify({'error': 'Invalid image file'}), 400
 
@@ -54,14 +58,14 @@ def predict():
     # 추론
     with torch.no_grad():
         output = model(image.unsqueeze(0))
+
+    print(float(output[0][0]))
         
-    if(float(output[0][0]) > 0.5):
+    if(float(output[0][0]) > 0.2):
         prediction = 1
     
     else:
         prediction = 0
-    prediction = output.argmax(dim=1).item()
-
     
     # 결과
     return jsonify({'prediction': prediction})

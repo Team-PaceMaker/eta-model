@@ -25,4 +25,5 @@ docs/_build/
 htmlcov/
 .coverage
 .coverage.*
-*,cover
+*.cover
+*.zip
