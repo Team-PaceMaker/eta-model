@@ -30,4 +30,18 @@ zipp==3.17.0
 `5001`
 
 ### How to use
-`@app.route('/api/v1/eta/attention', methods=['POST'])`
+Please Check inference.ipynb
+
+### Pretrained Weight
+
+Model was trained with `python 3.8.x`, `pytoch 1.14`
+
+```
+$ git clone https://github.com/KimTaeYun02/ETA.git
+$ pip install pytorch_pretrained_vit
+```
+
+You can download pre-trained weight this link https://drive.google.com/file/d/1vbggo2VEdDI-L5q8aGCn3408sLTSYr3X/view?usp=drive_link
+
+### Model Output
+![result](./img/output.gif)
