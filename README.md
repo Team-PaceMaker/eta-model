@@ -30,18 +30,20 @@ zipp==3.17.0
 `5001`
 
 ### How to use
-Please Check inference.ipynb
+Please Check [inference.ipynb](./inference.ipynb)
 
 ### Pretrained Weight
 
 Model was trained with `python 3.8.x`, `pytoch 1.14`
 
 ```
-$ git clone https://github.com/KimTaeYun02/ETA.git
-$ pip install pytorch_pretrained_vit
+$ git clone https://github.com/Team-PaceMaker/eta-model.git
+$ conda create -n ETA_model python=3.8
+$ conda activate ETA_model
+$ pip install -r requirements.txt 
 ```
 
-You can download pre-trained weight this link https://drive.google.com/file/d/1vbggo2VEdDI-L5q8aGCn3408sLTSYr3X/view?usp=drive_link
+You can download pre-trained weight this [link] (https://drive.google.com/file/d/1vbggo2VEdDI-L5q8aGCn3408sLTSYr3X/view?usp=drive_link)
 
 ### Model Output
 ![result](./img/output.gif)
