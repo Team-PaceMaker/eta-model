@@ -43,7 +43,7 @@ $ conda activate ETA_model
 $ pip install -r requirements.txt 
 ```
 
-You can download pre-trained weight this [link] (https://drive.google.com/file/d/1vbggo2VEdDI-L5q8aGCn3408sLTSYr3X/view?usp=drive_link)
+You can download pre-trained weight this [link](https://drive.google.com/file/d/1vbggo2VEdDI-L5q8aGCn3408sLTSYr3X/view?usp=drive_link)
 
 ### Model Output
 ![result](./img/output.gif)
